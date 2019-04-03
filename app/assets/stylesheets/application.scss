@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+@import "@primer/css/index.scss";
+
+.octicon {
+  fill: currentColor;
+}

@@ -13,6 +13,7 @@ Install Postgres as desired.
 ## Configuration
 
 `bundle install`
+`npm install`
 
 ## Database creation
 

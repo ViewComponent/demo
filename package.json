@@ -1,5 +1,7 @@
 {
   "name": "demo",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@primer/css": "^12.2.1"
+  }
 }
