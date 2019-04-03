@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_04_03_144313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "issues", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "state", null: false
+    t.bigint "pull_request_id"
+    t.index ["pull_request_id"], name: "index_issues_on_pull_request_id"
+  end
+
+  create_table "pull_requests", force: :cascade do |t|
+    t.datetime "merged_at"
+    t.boolean "draft", default: false, null: false
+  end
 
 end

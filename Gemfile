@@ -47,12 +47,16 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
-group :test do
-  # Adds support for Capybara system testing and selenium driver
+group :development, :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem "factory_bot_rails"
+  gem "pry-rails"
+  gem "rspec-rails"
+  gem "rspec_junit_formatter"
+  gem "standard"
+  gem "wkhtmltoimage-binary"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
