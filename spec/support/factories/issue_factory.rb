@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :issue do
     title { SecureRandom.hex }
+    open
 
     trait :open do
       state { "open" }

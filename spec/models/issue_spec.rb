@@ -1,6 +1,15 @@
 require "rails_helper"
 
 describe Issue do
+  describe "default scope" do
+    it "does not return issues with pull requests" do
+      issue = create(:issue)
+      issue_with_pull_request = create(:issue, :with_pull_request)
+
+      assert_equal [issue], Issue.all
+    end
+  end
+
   describe "state" do
     it "returns open when the issue is open" do
       issue = create(:issue, :open)
