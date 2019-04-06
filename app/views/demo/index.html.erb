@@ -2,6 +2,6 @@
   <% if issue.pull_request %>
     <%= render PullRequests::Badge, pull_request: issue.pull_request %>
   <% else %>
-    <%= render Issues::Badge, issue: issue %>
+    <%= render Issues::Badge, state: issue.state.to_sym %>
   <% end %>
 <% end %>
