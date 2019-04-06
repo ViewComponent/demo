@@ -1,3 +1,3 @@
 <% Issue.all.each do |issue| %>
-  <%= render partial: "issue_badge", locals: { issue: issue, pull: issue.pull_request } %>
+  <%= render Issues::Badge, issue: issue, pull: issue.pull_request %>
 <% end %>
