@@ -28,4 +28,10 @@ RSpec.describe Primer::State do
 
     assert result.css(".State.State--purple").any?
   end
+
+  it "sets the title" do
+    result = render_string("<%= render Primer::State, title: 'Hi!' do %>content<% end %>")
+
+    assert result.css("[title='Hi!']").any?
+  end
 end

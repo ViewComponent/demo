@@ -9,19 +9,19 @@ module PullRequests
     def template
       <<-erb
       <% if @pull_request && @pull_request.merged? %>
-        <%= render Primer::State, color: :purple do %>
+        <%= render Primer::State, color: :purple, title: "Status: Merged" do %>
           <%= octicon('git-merge') %> Merged
         <% end %>
       <% elsif @pull_request && @pull_request.closed? %>
-        <%= render Primer::State, color: :red do %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
           <%= octicon('git-pull-request') %> Closed
         <% end %>
       <% elsif @pull_request && @pull_request.draft? %>
-        <%= render Primer::State, color: :default do %>
+        <%= render Primer::State, color: :default, title: "Status: Draft" do %>
           <%= octicon('git-pull-request') %> Draft
         <% end %>
       <% else %>
-        <%= render Primer::State, color: :green do %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
           <%= octicon('git-pull-request') %> Open
         <% end %>
       <% end %>

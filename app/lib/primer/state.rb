@@ -19,7 +19,7 @@ module Primer
 
     def template
       <<-erb
-      <div class="State <%= class_name %>">
+      <div title="<%= title %>" class="State <%= class_name %>">
         <%= content %>
       </div>
       erb
