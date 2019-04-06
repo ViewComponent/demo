@@ -13,9 +13,9 @@ module Issues
           <%= octicon('issue-closed') %> Closed
         </div>
       <% else %>
-        <div class="State State--green">
+        <%= render Issues::Badge, color: :green do %>
           <%= octicon('issue-opened') %> Open
-        </div>
+        <% end %>
       <% end %>
       erb
     end
