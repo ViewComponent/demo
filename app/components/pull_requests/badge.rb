@@ -6,13 +6,6 @@ module PullRequests
       @pull_request = pull_request
     end
 
-    def render
-      eval(
-        "output_buffer = ActionView::OutputBuffer.new; " +
-        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
-      )
-    end
-
     def template
       <<-erb
       <% if @pull_request && @pull_request.merged? %>
