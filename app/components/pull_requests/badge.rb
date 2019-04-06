@@ -18,7 +18,7 @@ module PullRequests
         </div>
       <% elsif @pull_request && @pull_request.draft? %>
         <div class="State">
-        <%= octicon('git-pull-request') %> Draft
+          <%= octicon('git-pull-request') %> Draft
         </div>
       <% else %>
         <div class="State State--green">
