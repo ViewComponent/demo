@@ -10,18 +10,23 @@ module Primer
     attr_reader :color
     validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
 
-    def initialize(color:)
-      @color = color
+    attr_reader :title
+    validates :title, presence: true
 
-      @class_name = COLOR_CLASS_MAPPINGS[color]
+    def initialize(color: :default, title:)
+      @color, @title = color, title
     end
 
     def template
       <<-erb
-      <div class="State <%= @class_name %>">
+      <div class="State <%= class_name %>">
         <%= content %>
       </div>
       erb
+    end
+
+    def class_name
+      COLOR_CLASS_MAPPINGS[color]
     end
   end
 end
