@@ -6,7 +6,7 @@ class ActionView::Base
       instance = component.new(*args)
       instance.content = self.capture(&block) if block_given?
       instance.validate!
-      instance.render
+      instance.html
     end
   end
 

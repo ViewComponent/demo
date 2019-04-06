@@ -9,11 +9,11 @@ module Issues
     def template
       <<-erb
       <% if @issue.closed? %>
-        <div class="State State--red">
+        <%= render Primer::State, color: :red do %>
           <%= octicon('issue-closed') %> Closed
-        </div>
+        <% end %>
       <% else %>
-        <%= render Issues::Badge, color: :green do %>
+        <%= render Primer::State, color: :green do %>
           <%= octicon('issue-opened') %> Open
         <% end %>
       <% end %>

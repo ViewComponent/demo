@@ -14,4 +14,10 @@ RSpec.describe Primer::State do
 
     assert_includes exception.message, "Color is not included in the list"
   end
+
+  it "assigns the correct CSS class for color" do
+    result = render_string("<%= render Primer::State, color: :purple do %>content<% end %>")
+
+    assert result.css(".State.State--purple").any?
+  end
 end

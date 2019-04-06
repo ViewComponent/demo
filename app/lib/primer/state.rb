@@ -12,11 +12,13 @@ module Primer
 
     def initialize(color:)
       @color = color
+
+      @class_name = COLOR_CLASS_MAPPINGS[color]
     end
 
     def template
       <<-erb
-      <div class="State State--green">
+      <div class="State <%= @class_name %>">
         <%= content %>
       </div>
       erb
