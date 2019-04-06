@@ -7,10 +7,8 @@ module Primer
       purple: "State--purple",
     }.freeze
 
-    attr_reader :color
+    attr_reader :color, :title
     validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
-
-    attr_reader :title
     validates :title, presence: true
 
     def initialize(color: :default, title:)
