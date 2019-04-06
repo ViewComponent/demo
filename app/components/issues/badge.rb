@@ -2,6 +2,10 @@ module Issues
   class Badge
     include OcticonsHelper
 
+    def initialize(issue:, pull_request:)
+      @issue = issue
+    end
+
     def render
       eval(
         "output_buffer = ActionView::OutputBuffer.new; " +
@@ -11,9 +15,15 @@ module Issues
 
     def template
       <<-erb
-      <div class="State State--green">
-        #{octicon('issue-opened')} Open
-      </div>
+      <% if @issue.closed? %>
+        <div class="State State--red">
+          <%= octicon('issue-closed') %> Closed
+        </div>
+      <% else %>
+        <div class="State State--green">
+          <%= octicon('issue-opened') %> Open
+        </div>
+      <% end %>
       erb
     end
   end
