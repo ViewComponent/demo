@@ -1,24 +1,24 @@
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
-<% elsif issue && issue.closed? %>
+<% elsif issue.closed? %>
   <div class="State State--red">
     <%= octicon('issue-closed') %> Closed
   </div>
-<% elsif issue %>
+<% else %>
   <div class="State State--green">
     <%= octicon('issue-opened') %> Open
   </div>
