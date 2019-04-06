@@ -14,3 +14,9 @@ end
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+
+def render_string(string)
+  html = ApplicationController.new.view_context.render(inline: string)
+
+  Nokogiri::HTML(html)
+end

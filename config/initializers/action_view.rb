@@ -1,9 +1,11 @@
 class ActionView::Base
   module RenderMonkeyPatch
-    def render(component, *args)
-      return super unless component < ActionView::Component
+    def render(component, *args, &block)
+      return super unless component.is_a?(Class) && component < ActionView::Component
 
-      component.new(*args).render
+      instance = component.new(*args)
+      instance.content = self.capture(&block) if block_given?
+      instance.render
     end
   end
 
