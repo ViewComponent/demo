@@ -2,30 +2,56 @@ module PullRequests
   class Badge < ActionView::Component
     include OcticonsHelper
 
-    def initialize(pull_request:)
-      @pull_request = pull_request
+    attr_reader :state, :is_draft
+    validates :state, inclusion: { in: [:merged, :closed, :open] }
+    validates :is_draft, inclusion: { in: [true, false] }
+
+    def initialize(state:, is_draft:)
+      @state, @is_draft = state, is_draft
     end
 
     def template
-      <<-erb
-      <% if @pull_request && @pull_request.merged? %>
-        <%= render Primer::State, color: :purple, title: "Status: Merged" do %>
-          <%= octicon('git-merge') %> Merged
-        <% end %>
-      <% elsif @pull_request && @pull_request.closed? %>
-        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
-          <%= octicon('git-pull-request') %> Closed
-        <% end %>
-      <% elsif @pull_request && @pull_request.draft? %>
-        <%= render Primer::State, color: :default, title: "Status: Draft" do %>
-          <%= octicon('git-pull-request') %> Draft
-        <% end %>
-      <% else %>
-        <%= render Primer::State, color: :green, title: "Status: Open" do %>
-          <%= octicon('git-pull-request') %> Open
-        <% end %>
+      <<~erb
+      <%= render Primer::State, title: title, color: color do %>
+        <%= octicon(octicon_name) %> <%= label %>
       <% end %>
       erb
+    end
+
+    def title
+      "Status: #{label}"
+    end
+
+    def label
+      if state == :open && is_draft
+        "Draft"
+      else
+        state.to_s.capitalize
+      end
+    end
+
+    def color
+      case state
+      when :closed
+        :red
+      when :merged
+        :purple
+      when :open
+        if is_draft
+          :default
+        else
+          :green
+        end
+      end
+    end
+
+    def octicon_name
+      case state
+      when :merged
+        "git-merge"
+      when :closed, :open
+        "git-pull-request"
+      end
     end
   end
 end
