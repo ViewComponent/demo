@@ -1,3 +1,7 @@
 <% Issue.all.each do |issue| %>
-  <%= render Issues::Badge, issue: issue, pull_request: issue.pull_request %>
+  <% if issue.pull_request %>
+    <%= render PullRequests::Badge, pull_request: issue.pull_request %>
+  <% else %>
+    <%= render Issues::Badge, issue: issue %>
+  <% end %>
 <% end %>
