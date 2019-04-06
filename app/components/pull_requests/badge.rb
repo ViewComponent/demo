@@ -10,7 +10,7 @@ module PullRequests
       @state, @is_draft = state, is_draft
     end
 
-    def template
+    def self.template
       <<~erb
       <%= render Primer::State, title: title, color: color do %>
         <%= octicon(octicon_name) %> <%= label %>

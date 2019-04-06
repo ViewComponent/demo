@@ -15,7 +15,7 @@ module Primer
       @color, @title = color, title
     end
 
-    def template
+    def self.template
       <<-erb
       <div title="<%= title %>" class="State <%= class_name %>">
         <%= content %>

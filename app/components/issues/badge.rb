@@ -22,7 +22,7 @@ module Issues
       @state = state
     end
 
-    def template
+    def self.template
       <<-erb
       <%= render Primer::State, color: color, title: "Status: Closed" do %>
         <%= octicon(octicon_name) %> <%= label %>
