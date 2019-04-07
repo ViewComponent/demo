@@ -8,7 +8,7 @@ module Primer
     }.freeze
 
     attr_reader :color, :title
-    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
+    validates :color, inclusion: {in: COLOR_CLASS_MAPPINGS.keys}
     validates :title, presence: true
 
     def initialize(color: :default, title:)

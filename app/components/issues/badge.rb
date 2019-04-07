@@ -6,17 +6,17 @@ module Issues
       open: {
         color: :green,
         octicon_name: "issue-opened",
-        label: "Open"
+        label: "Open",
       },
       closed: {
         color: :red,
         octicon_name: "issue-closed",
-        label: "Closed"
-      }
+        label: "Closed",
+      },
     }.freeze
 
     attr_reader :state
-    validates :state, inclusion: { in: STATES.keys }
+    validates :state, inclusion: {in: STATES.keys}
 
     def initialize(state:)
       @state = state

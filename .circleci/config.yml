@@ -42,9 +42,6 @@ jobs:
       # Setup the database
       - run: bundle exec rake db:setup
 
-      # Run standardrb linter
-      - run: bundle exec standardrb
-
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load

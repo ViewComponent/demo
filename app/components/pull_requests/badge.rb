@@ -3,8 +3,8 @@ module PullRequests
     include OcticonsHelper
 
     attr_reader :state, :is_draft
-    validates :state, inclusion: { in: [:merged, :closed, :open] }
-    validates :is_draft, inclusion: { in: [true, false] }
+    validates :state, inclusion: {in: [:merged, :closed, :open]}
+    validates :is_draft, inclusion: {in: [true, false]}
 
     def initialize(state:, is_draft:)
       @state, @is_draft = state, is_draft
@@ -12,9 +12,9 @@ module PullRequests
 
     def self.template
       <<~erb
-      <%= render Primer::State, title: title, color: color do %>
-        <%= octicon(octicon_name) %> <%= label %>
-      <% end %>
+        <%= render Primer::State, title: title, color: color do %>
+          <%= octicon(octicon_name) %> <%= label %>
+        <% end %>
       erb
     end
 
