@@ -26,6 +26,8 @@ jobs:
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
 
+      - run: npm install
+
       # Cache Dependencies
       - type: cache-save
         name: Store bundle cache
