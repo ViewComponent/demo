@@ -24,10 +24,14 @@ module Issues
 
     def self.template
       <<-erb
-      <%= render Primer::State, color: color, title: "Status: Closed" do %>
+      <%= render Primer::State, color: color, title: title do %>
         <%= octicon(octicon_name) %> <%= label %>
       <% end %>
       erb
+    end
+
+    def title
+      "Status: #{state.to_s.titleize}"
     end
 
     def color
