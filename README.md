@@ -22,3 +22,13 @@ Install Postgres as desired.
 ## How to run the test suite
 
 `rspec`
+
+## Server
+
+`rails s`
+
+## Benchmark
+
+Run server in production mode: `RAILS_ENV=production rails s`.
+
+Load `/benchmark` and read server log.
