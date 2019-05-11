@@ -19,6 +19,7 @@ module Issues
     validates :state, inclusion: {in: STATES.keys}
 
     def initialize(state:)
+      super
       @state = state
     end
 

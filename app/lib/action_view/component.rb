@@ -1,16 +1,20 @@
 module ActionView
   class Component < ActionView::Base
     include ActiveModel::Validations
-    attr_accessor :content
+    attr_reader :content
 
     def self.html(view_context, *args, &block)
       compile unless @compiled
       @compiled = true
 
-      instance = new(*args)
-      instance.content = view_context.capture(&block) if block_given?
+      instance = new(*args) { view_context.capture(&block) if block }
       instance.validate!
       instance.html
+    end
+
+    def initialize(*args)
+      @content = yield
+      super(*args)
     end
 
     private_class_method def self.compile

@@ -1,0 +1,67 @@
+<% Benchmark.ips do |x| %>
+  <% x.report("component") do %>
+    <%= render Box do %>
+      Inside a box
+      <%= render Box do %>
+        Inside a box
+        <%= render Box do %>
+          Inside a box
+          <%= render Box do %>
+            Inside a box
+            <%= render Box do %>
+              Inside a box
+              <%= render Box do %>
+                Inside a box
+                <%= render Box do %>
+                  Inside a box
+                  <%= render Box do %>
+                    Inside a box
+                    <%= render Box do %>
+                      Inside a box
+                      <%= render Box do %>
+                        Inside a box
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% x.report("partial") do %>
+    <%= render "box" do %>
+      Inside a box
+      <%= render "box" do %>
+        Inside a box
+        <%= render "box" do %>
+          Inside a box
+          <%= render "box" do %>
+            Inside a box
+            <%= render "box" do %>
+              Inside a box
+              <%= render "box" do %>
+                Inside a box
+                <%= render "box" do %>
+                  Inside a box
+                  <%= render "box" do %>
+                    Inside a box
+                    <%= render "box" do %>
+                      Inside a box
+                      <%= render "box" do %>
+                        Inside a box
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= x.compare! %>
+<% end %>
