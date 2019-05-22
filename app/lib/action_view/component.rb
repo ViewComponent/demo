@@ -14,7 +14,7 @@ module ActionView
 
     def initialize(*args)
       @content = yield
-      super(*args)
+      super
     end
 
     private_class_method def self.compile
