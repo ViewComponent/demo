@@ -1,6 +1,14 @@
 require "rails_helper"
 
 RSpec.describe Primer::State do
+  it "raises an error when content isn't passed" do
+    exception = assert_raises ActiveModel::ValidationError do
+      render_component(Primer::State, title: 'Hi')
+    end
+
+    assert_includes exception.message, "Content can't be blank"
+  end
+
   it "renders content passed to it as a block" do
     result = render_component(Primer::State, color: :green, title: 'Hi') do
       "content"

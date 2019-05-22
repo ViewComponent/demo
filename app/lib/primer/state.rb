@@ -9,7 +9,7 @@ module Primer
 
     attr_reader :color, :title
     validates :color, inclusion: {in: COLOR_CLASS_MAPPINGS.keys}
-    validates :title, presence: true
+    validates :title, :content, presence: true
 
     def initialize(color: :default, title:)
       super
