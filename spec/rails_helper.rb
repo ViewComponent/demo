@@ -23,3 +23,9 @@ def render_string(string)
 
   Nokogiri::HTML(html)
 end
+
+def render_component(component, **args)
+  controller = ApplicationController.new
+  controller.request = ActionDispatch::TestRequest.create
+  Nokogiri::HTML(component.html(controller.view_context, args))
+end
