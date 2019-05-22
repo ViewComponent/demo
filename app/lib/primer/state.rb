@@ -17,15 +17,11 @@ module Primer
     end
 
     def self.template
-      <<-erb
-      <div title="<%= title %>" class="State <%= class_name %>">
+      <<-'erb'
+      <div title="<%= title %>" class="State <%= COLOR_CLASS_MAPPINGS[color] %>">
         <%= content %>
       </div>
       erb
-    end
-
-    def class_name
-      COLOR_CLASS_MAPPINGS[color]
     end
   end
 end
