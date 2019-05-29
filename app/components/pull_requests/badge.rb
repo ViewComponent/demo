@@ -7,7 +7,6 @@ module PullRequests
     validates :is_draft, inclusion: {in: [true, false]}
 
     def initialize(state:, is_draft:)
-      super
       @state, @is_draft = state, is_draft
     end
 
