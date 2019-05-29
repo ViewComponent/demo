@@ -12,7 +12,6 @@ module Primer
     validates :title, :content, presence: true
 
     def initialize(color: :default, title:)
-      super
       @color, @title = color, title
     end
 
