@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/joelhawksley/rails.git
-  revision: d8c4ff78d36d7a6edd66871753701f91963a3669
+  revision: 1e3a2742028ffa76e2cf7b9b6e30066a8b2a1080
   branch: actionview-component
   specs:
     actioncable (6.1.0.alpha)
