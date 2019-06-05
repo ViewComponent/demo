@@ -18,8 +18,8 @@ end
 # require only the support files necessary.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-def render_component(component, **args, &block)
+def render_component(component, &block)
   controller = ApplicationController.new
   controller.request = ActionDispatch::TestRequest.create
-  Nokogiri::HTML(component.call(controller.view_context, args, &block))
+  Nokogiri::HTML(component.render_object(controller.view_context, &block))
 end

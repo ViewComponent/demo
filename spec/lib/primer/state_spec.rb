@@ -3,14 +3,14 @@ require "rails_helper"
 RSpec.describe Primer::State do
   it "raises an error when content isn't passed" do
     exception = assert_raises ActiveModel::ValidationError do
-      render_component(Primer::State, title: 'Hi')
+      render_component(Primer::State.new(title: 'Hi'))
     end
 
     assert_includes exception.message, "Content can't be blank"
   end
 
   it "renders content passed to it as a block" do
-    result = render_component(Primer::State, color: :green, title: 'Hi') do
+    result = render_component(Primer::State.new(color: :green, title: 'Hi')) do
       "content"
     end
 
@@ -19,7 +19,7 @@ RSpec.describe Primer::State do
 
   it "raises an error when color is not one of valid values" do
     exception = assert_raises ActiveModel::ValidationError do
-      render_component(Primer::State, color: :chartreuse, title: 'Hi') do
+      render_component(Primer::State.new(color: :chartreuse, title: 'Hi')) do
         "foo"
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe Primer::State do
 
   it "raises an error when title is not present" do
     exception = assert_raises ActiveModel::ValidationError do
-      render_component(Primer::State, title: '') do
+      render_component(Primer::State.new(title: '')) do
         "foo"
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe Primer::State do
   end
 
   it "assigns the correct CSS class for color" do
-    result = render_component(Primer::State, color: :purple, title: 'Hi') do
+    result = render_component(Primer::State.new(color: :purple, title: 'Hi')) do
       "content"
     end
 
@@ -46,7 +46,7 @@ RSpec.describe Primer::State do
   end
 
   it "sets the title" do
-    result = render_component(Primer::State, title: 'Hi!') do
+    result = render_component(Primer::State.new(title: 'Hi!')) do
       "content"
     end
 

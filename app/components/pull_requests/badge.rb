@@ -12,7 +12,7 @@ module PullRequests
 
     def self.template
       <<-'erb'
-      <%= render Primer::State, title: "Status: #{label}", color: color do %>
+      <%= render(Primer::State.new(title: "Status: #{label}", color: color)) do %>
         <%= octicon(octicon_name) %> <%= label %>
       <% end %>
       erb

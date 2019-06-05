@@ -24,7 +24,7 @@ module Issues
 
     def self.template
       <<-'erb'
-      <%= render Primer::State, color: STATES[state][:color], title: "Status: #{state.to_s.titleize}" do %>
+      <%= render(Primer::State.new(color: STATES[state][:color], title: "Status: #{state.to_s.titleize}")) do %>
         <%= octicon(STATES[state][:octicon_name]) %> <%= STATES[state][:label] %>
       <% end %>
       erb
