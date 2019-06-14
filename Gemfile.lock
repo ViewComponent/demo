@@ -1,7 +1,6 @@
 GIT
-  remote: https://github.com/joelhawksley/rails.git
-  revision: 8ff139015aeaaef425f322053973ec79b4793135
-  branch: actionview-component
+  remote: https://github.com/rails/rails.git
+  revision: c78d5243700a1a8ac2fc0408e8cc2e7660ead72f
   specs:
     actioncable (6.1.0.alpha)
       actionpack (= 6.1.0.alpha)
@@ -240,9 +239,9 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    websocket-driver (0.7.0)
+    websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.3)
+    websocket-extensions (0.1.4)
     wkhtmltoimage-binary (0.12.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)

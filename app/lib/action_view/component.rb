@@ -5,7 +5,7 @@ module ActionView
     # Entrypoint for rendering. Called by ActionView::RenderingHelper#render.
     #
     # Returns ActionView::OutputBuffer.
-    def render_object(view_context, &block)
+    def render_in(view_context, &block)
       self.class.compile
       @content = view_context.capture(&block) if block_given?
       validate!
