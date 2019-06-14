@@ -21,5 +21,5 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 def render_component(component, &block)
   controller = ApplicationController.new
   controller.request = ActionDispatch::TestRequest.create
-  Nokogiri::HTML(component.render_object(controller.view_context, &block))
+  Nokogiri::HTML(component.render_in(controller.view_context, &block))
 end
