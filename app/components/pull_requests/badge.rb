@@ -10,6 +10,8 @@ module PullRequests
       @state, @is_draft = state, is_draft
     end
 
+    private
+
     def label
       if state == :open && is_draft
         "Draft"

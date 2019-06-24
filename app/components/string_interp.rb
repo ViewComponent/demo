@@ -5,6 +5,8 @@ class StringInterp < ActionView::Component
     erb
   end
 
+  private
+
   def foo
     "bar"
   end
