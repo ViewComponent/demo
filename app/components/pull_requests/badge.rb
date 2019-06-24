@@ -10,13 +10,7 @@ module PullRequests
       @state, @is_draft = state, is_draft
     end
 
-    def self.template
-      <<-'erb'
-      <%= render(Primer::State.new(title: "Status: #{label}", color: color)) do %>
-        <%= octicon(octicon_name) %> <%= label %>
-      <% end %>
-      erb
-    end
+    private
 
     def label
       if state == :open && is_draft
