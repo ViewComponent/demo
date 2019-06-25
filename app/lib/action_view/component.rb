@@ -1,3 +1,17 @@
+# Use this monkey patch if you aren't running Rails master / 6.1 alpha
+#
+# class ActionView::Base
+#   module RenderMonkeyPatch
+#     def render(component, _ = nil, &block)
+#       return super unless component.respond_to?(:render_in)
+#
+#       component.render_in(self, &block)
+#     end
+#   end
+#
+#   prepend RenderMonkeyPatch
+# end
+
 module ActionView
   class Component < ActionView::Base
     include ActiveModel::Validations
