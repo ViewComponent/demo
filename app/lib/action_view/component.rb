@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'delegate'
+
 module ActionView
   class Component < ActionView::Base
     include ActiveModel::Validations
@@ -26,43 +30,53 @@ module ActionView
     # <%= render MyComponent.new(title: "greeting") do %>world<% end %>
     # returns:
     # <span title="greeting">Hello, world!</span>
-    #
-    def render_in(view_context, *args, &block)
-      self.class.compile
-      @content = view_context.capture(&block) if block_given?
+
+    # @see https://github.com/devnacho/mountain_view/blob/master/lib/mountain_view/presenter.rb#L65
+    module ViewContext
+      attr_reader :_component
+
+      def inject_component_context(component)
+        @_component = component
+
+        protected_methods = ActionView::Component.public_methods(false)
+        methods = component.public_methods(false) - protected_methods
+
+        methods.each do |meth|
+          next if self.class.method_defined?(meth)
+          next unless _component.respond_to?(meth)
+
+          self.class.delegate meth, to: :_component
+        end
+      end
+    end
+
+    def render_in(context, *_args)
+      context.extend ViewContext
+      context.inject_component_context self
+
+      @content = yield if block_given?
+
       validate!
-      call
+
+      if self.class.template
+        renderer = ActionView::TemplateRenderer.new(context.lookup_context)
+        renderer.render(context, inline: self.class.template).body
+      else
+        context.render(template: self.class.filename)
+      end
     end
 
     def initialize(*); end
 
-    def self.compile
-      @compiled ||= nil
-      return if @compiled
+    def self.template; end
 
-      class_eval(
-        "def call; @output_buffer = ActionView::OutputBuffer.new; " +
-        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src +
-        "; end"
-      )
+    def self.filename
+      name = instance_method(:initialize).source_location[0]
 
-      @compiled = true
-    end
+      raise NotImplementedError, 'Subclasses of ActionView::Component must implement #initialize' if name == __FILE__
 
-    def self.template
-      filename = self.instance_method(:initialize).source_location[0]
-
-      raise NotImplementedError.new("Subclasses of ActionView::Component must implement #initialize") if filename == __FILE__
-
-      filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
-
-      erb_template_path = filename_without_extension+".html.erb"
-
-      if File.file?(erb_template_path)
-        File.read(erb_template_path)
-      else
-        raise NotImplementedError.new("Could not find template, expected #{erb_template_path} to define it")
-      end
+      filename_without_extension = name[0..-(File.extname(name).length + 1)]
+      filename_without_extension.sub(Rails.root.join('app', 'components').to_s, '').sub(%r{\A/}, '')
     end
 
     private

@@ -1,3 +1,3 @@
-<%= render(Primer::State.new(color: STATES[state][:color], title: "Status: #{state.to_s.titleize}")) do %>
-  <%= octicon(STATES[state][:octicon_name]) %> <%= STATES[state][:label] %>
+<%= render Primer::State.new color: Issues::Badge::STATES[state][:color], title: "Status: #{state.to_s.titleize}" do %>
+  <%= octicon Issues::Badge::STATES[state][:octicon_name] %> <%= Issues::Badge::STATES[state][:label] %>
 <% end %>
