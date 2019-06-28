@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'delegate'
-
 module ActionView
   class Component < ActionView::Base
     include ActiveModel::Validations
