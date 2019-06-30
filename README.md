@@ -2,6 +2,10 @@
 
 Rails application with ActionView::Component
 
+## Monkey Patch
+
+The monkey patch necessary to use this code on versions of Rails prior to the alpha of 6.1 can be found in `app/lib/action_view/component.rb`.
+
 ## Ruby version
 
 Use your favorite Ruby version manager to install `2.6.1`.
