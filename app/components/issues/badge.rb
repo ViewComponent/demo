@@ -15,11 +15,14 @@ module Issues
       },
     }.freeze
 
-    attr_reader :state
     validates :state, inclusion: {in: STATES.keys}
 
     def initialize(state:)
       @state = state
     end
+
+    private
+
+    attr_reader :state
   end
 end

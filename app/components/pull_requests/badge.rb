@@ -2,7 +2,6 @@ module PullRequests
   class Badge < ActionView::Component
     include OcticonsHelper
 
-    attr_reader :state, :is_draft
     validates :state, inclusion: {in: [:merged, :closed, :open]}
     validates :is_draft, inclusion: {in: [true, false]}
 
@@ -11,6 +10,8 @@ module PullRequests
     end
 
     private
+
+    attr_reader :state, :is_draft
 
     def label
       if state == :open && is_draft
