@@ -1,16 +1,25 @@
 # Use this monkey patch if you aren't running Rails master / 6.1 alpha
 #
-# class ActionView::Base
-#   module RenderMonkeyPatch
-#     def render(component, _ = nil, &block)
-#       return super unless component.respond_to?(:render_in)
+# module ViewComponentRenderer
+#   def render(component, _ = nil, &block)
+#     return super unless component.respond_to?(:render_in)
 #
-#       component.render_in(self, &block)
-#     end
+#     component.render_in(self, &block)
 #   end
-#
-#   prepend RenderMonkeyPatch
 # end
+#
+# module ControllerComponentRenderer
+#   def render(context, options, &block)
+#     return super unless options[:partial].respond_to?(:render_in)
+#
+#     options[:partial].render_in(self, &block)
+#   end
+# end
+#
+# # Used when calling `render` in templates and partials
+# ActionView::Base.prepend(ViewComponentRenderer)
+# # Used when calling `render` in controller actions
+# ActionView::Renderer.prepend(ControllerComponentRenderer)
 
 module ActionView
   class Component < ActionView::Base
