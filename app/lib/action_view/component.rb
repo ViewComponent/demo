@@ -8,18 +8,22 @@
 #   end
 # end
 #
-# module ControllerComponentRenderer
-#   def render(context, options, &block)
-#     return super unless options[:partial].respond_to?(:render_in)
-#
-#     options[:partial].render_in(self, &block)
-#   end
-# end
 #
 # # Used when calling `render` in templates and partials
 # ActionView::Base.prepend(ViewComponentRenderer)
+
+module ControllerComponentRenderer
+  def render(component, _ = nil)
+    return super unless component.respond_to?(:render_in)
+
+    self.response_body = component.render_in(self)
+
+    return
+  end
+end
+
 # # Used when calling `render` in controller actions
-# ActionView::Renderer.prepend(ControllerComponentRenderer)
+ActionController::Base.prepend(ControllerComponentRenderer)
 
 module ActionView
   class Component < ActionView::Base
