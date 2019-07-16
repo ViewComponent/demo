@@ -50,6 +50,12 @@ module ActionView
 
     def initialize(*); end
 
+    def self.inherited(child)
+      child.include Rails.application.routes.url_helpers unless child < Rails.application.routes.url_helpers
+
+      super
+    end
+
     def self.compile
       @compiled ||= nil
       return if @compiled
