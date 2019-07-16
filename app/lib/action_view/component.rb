@@ -50,31 +50,60 @@ module ActionView
 
     def initialize(*); end
 
-    def self.inherited(child)
-      child.include Rails.application.routes.url_helpers unless child < Rails.application.routes.url_helpers
+    class << self
+      def inherited(child)
+        child.include Rails.application.routes.url_helpers unless child < Rails.application.routes.url_helpers
 
-      super
-    end
+        super
+      end
 
-    def self.compile
-      @compiled ||= nil
-      return if @compiled
+      def compile
+        @compiled ||= nil
+        return if @compiled
 
-      class_eval(
-        "def call; @output_buffer = ActionView::OutputBuffer.new; " +
-        ActionView::Template.handler_for_extension(template_handler).call(DummyTemplate.new, template) +
-        "; end"
-      )
+        class_eval(
+          "def call; @output_buffer = ActionView::OutputBuffer.new; " +
+          ActionView::Template.handler_for_extension(template_handler).call(DummyTemplate.new, template) +
+          "; end"
+        )
 
-      @compiled = true
-    end
+        @compiled = true
+      end
 
-    def self.template_handler
-      # Does the subclass implement .template ? If so, we assume the template is an ERB HEREDOC
-      if self.method(:template).owner == self.singleton_class
-        :erb
-      else
-        File.extname(template_file_path).gsub(".", "").to_sym
+      def template
+        File.read(template_file_path)
+      end
+
+      private
+
+      def template_handler
+        # Does the subclass implement .template ? If so, we assume the template is an ERB HEREDOC
+        if self.method(:template).owner == self.singleton_class
+          :erb
+        else
+          File.extname(template_file_path).gsub(".", "").to_sym
+        end
+      end
+
+      def template_file_path
+        filename = self.instance_method(:initialize).source_location[0]
+
+        raise NotImplementedError.new("Subclasses of ActionView::Component must implement #initialize") if filename == __FILE__
+
+        filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
+        siblings_files = Dir["#{filename_without_extension}.*"] - [filename]
+
+        if siblings_files.length > 1
+          raise StandardError.new("More than one template found for #{self}. There can only be one sidecar template file per component.")
+        end
+
+        if siblings_files.length == 0
+          raise NotImplementedError.new(
+            "Could not find a template for #{self}. Either define a .template method or add a sidecar template file."
+          )
+        end
+
+        siblings_files[0]
       end
     end
 
@@ -87,31 +116,6 @@ module ActionView
       def type
         "text/html"
       end
-    end
-
-    def self.template_file_path
-      filename = self.instance_method(:initialize).source_location[0]
-
-      raise NotImplementedError.new("Subclasses of ActionView::Component must implement #initialize") if filename == __FILE__
-
-      filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
-      siblings_files = Dir["#{filename_without_extension}.*"] - [filename]
-
-      if siblings_files.length > 1
-        raise StandardError.new("More than one template found for #{self}. There can only be one sidecar template file per component.")
-      end
-
-      if siblings_files.length == 0
-        raise NotImplementedError.new(
-          "Could not find a template for #{self}. Either define a .template method or add a sidecar template file."
-        )
-      end
-
-      siblings_files[0]
-    end
-
-    def self.template
-      File.read(template_file_path)
     end
 
     private
