@@ -97,7 +97,9 @@ module ActionView
       filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
       siblings_files = Dir["#{filename_without_extension}.*"] - [filename]
 
-      raise StandardError.new("too many sidecars") if siblings_files.length > 1
+      if siblings_files.length > 1
+        raise StandardError.new("More than one template found for #{self}. There can only be one sidecar template file per component.")
+      end
 
       if siblings_files.length == 0
         raise NotImplementedError.new(
