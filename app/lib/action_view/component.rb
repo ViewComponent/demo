@@ -98,17 +98,18 @@ module ActionView
       siblings_files = Dir["#{filename_without_extension}.*"] - [filename]
 
       raise StandardError.new("too many sidecars") if siblings_files.length > 1
-      raise StandardError.new("could not find sidecar file") if siblings_files.length == 0
+
+      if siblings_files.length == 0
+        raise NotImplementedError.new(
+          "Could not find a template for #{self}. Either define a .template method or add a sidecar template file."
+        )
+      end
 
       siblings_files[0]
     end
 
     def self.template
-      if File.file?(template_file_path)
-        File.read(template_file_path)
-      else
-        raise NotImplementedError.new("Could not find template")
-      end
+      File.read(template_file_path)
     end
 
     private
