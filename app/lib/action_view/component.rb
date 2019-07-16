@@ -86,10 +86,9 @@ module ActionView
       end
 
       def template_file_path
-        filename = self.instance_method(:initialize).source_location[0]
-
         raise NotImplementedError.new("#{self} must implement #initialize.") unless self.instance_method(:initialize).owner == self
 
+        filename = self.instance_method(:initialize).source_location[0]
         filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
         siblings_files = Dir["#{filename_without_extension}.*"] - [filename]
 
