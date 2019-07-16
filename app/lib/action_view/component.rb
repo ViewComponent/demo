@@ -48,8 +48,6 @@ module ActionView
       call
     end
 
-    def initialize(*); end
-
     class << self
       def inherited(child)
         child.include Rails.application.routes.url_helpers unless child < Rails.application.routes.url_helpers
@@ -88,7 +86,7 @@ module ActionView
       def template_file_path
         filename = self.instance_method(:initialize).source_location[0]
 
-        raise NotImplementedError.new("Subclasses of ActionView::Component must implement #initialize") if filename == __FILE__
+        raise NotImplementedError.new("#{self} must implement #initialize.") unless filename.include?(self.name.underscore)
 
         filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
         siblings_files = Dir["#{filename_without_extension}.*"] - [filename]
