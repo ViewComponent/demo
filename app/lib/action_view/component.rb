@@ -50,32 +50,70 @@ module ActionView
 
     def initialize(*); end
 
-    def self.compile
-      @compiled ||= nil
-      return if @compiled
+    class << self
+      def inherited(child)
+        child.include Rails.application.routes.url_helpers unless child < Rails.application.routes.url_helpers
 
-      class_eval(
-        "def call; @output_buffer = ActionView::OutputBuffer.new; " +
-        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src +
-        "; end"
-      )
+        super
+      end
 
-      @compiled = true
+      def compile
+        @compiled ||= nil
+        return if @compiled
+
+        class_eval(
+          "def call; @output_buffer = ActionView::OutputBuffer.new; " +
+          ActionView::Template.handler_for_extension(template_handler).call(DummyTemplate.new, template) +
+          "; end"
+        )
+
+        @compiled = true
+      end
+
+      def template
+        File.read(template_file_path)
+      end
+
+      private
+
+      def template_handler
+        # Does the subclass implement .template ? If so, we assume the template is an ERB HEREDOC
+        if self.method(:template).owner == self.singleton_class
+          :erb
+        else
+          File.extname(template_file_path).gsub(".", "").to_sym
+        end
+      end
+
+      def template_file_path
+        raise NotImplementedError.new("#{self} must implement #initialize.") unless self.instance_method(:initialize).owner == self
+
+        filename = self.instance_method(:initialize).source_location[0]
+        filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
+        siblings_files = Dir["#{filename_without_extension}.*"] - [filename]
+
+        if siblings_files.length > 1
+          raise StandardError.new("More than one template found for #{self}. There can only be one sidecar template file per component.")
+        end
+
+        if siblings_files.length == 0
+          raise NotImplementedError.new(
+            "Could not find a template for #{self}. Either define a .template method or add a sidecar template file."
+          )
+        end
+
+        siblings_files[0]
+      end
     end
 
-    def self.template
-      filename = self.instance_method(:initialize).source_location[0]
+    class DummyTemplate
+      def identifier
+        ""
+      end
 
-      raise NotImplementedError.new("Subclasses of ActionView::Component must implement #initialize") if filename == __FILE__
-
-      filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
-
-      erb_template_path = filename_without_extension+".html.erb"
-
-      if File.file?(erb_template_path)
-        File.read(erb_template_path)
-      else
-        raise NotImplementedError.new("Could not find template, expected #{erb_template_path} to define it")
+      # we'll eventually want to update this to support other types
+      def type
+        "text/html"
       end
     end
 
