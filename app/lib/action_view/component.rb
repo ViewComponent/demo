@@ -90,19 +90,19 @@ module ActionView
 
         filename = self.instance_method(:initialize).source_location[0]
         filename_without_extension = filename[0..-(File.extname(filename).length + 1)]
-        siblings_files = Dir["#{filename_without_extension}.*"] - [filename]
+        sibling_files = Dir["#{filename_without_extension}.*"] - [filename]
 
-        if siblings_files.length > 1
+        if sibling_files.length > 1
           raise StandardError.new("More than one template found for #{self}. There can only be one sidecar template file per component.")
         end
 
-        if siblings_files.length == 0
+        if sibling_files.length == 0
           raise NotImplementedError.new(
             "Could not find a template for #{self}. Either define a .template method or add a sidecar template file."
           )
         end
 
-        siblings_files[0]
+        sibling_files[0]
       end
     end
 
