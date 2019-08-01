@@ -1,5 +1,6 @@
-# Use this monkey patch if you aren't running Rails master / 6.1 alpha
+# frozen_string_literal: true
 #
+# Use this monkey patch if you aren't running Rails master / 6.1 alpha
 # class ActionView::Base
 #   module RenderMonkeyPatch
 #     def render(component, _ = nil, &block)
@@ -63,7 +64,7 @@ module ActionView
 
         class_eval(
           "def call; @output_buffer = ActionView::OutputBuffer.new; " +
-          ActionView::Template.handler_for_extension(template_handler).call(DummyTemplate.new, template) +
+          compiled_template +
           "; end"
         )
 
@@ -75,6 +76,16 @@ module ActionView
       end
 
       private
+
+      def compiled_template
+        handler = ActionView::Template.handler_for_extension(template_handler)
+
+        if handler.method(:call).parameters.length > 1
+          handler.call(DummyTemplate.new, template)
+        else
+          handler.call(DummyTemplate.new(template))
+        end
+      end
 
       def template_handler
         # Does the subclass implement .template ? If so, we assume the template is an ERB HEREDOC
@@ -107,6 +118,12 @@ module ActionView
     end
 
     class DummyTemplate
+      attr_reader :source
+
+      def initialize(source = nil)
+        @source = source
+      end
+
       def identifier
         ""
       end
