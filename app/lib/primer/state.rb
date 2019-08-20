@@ -14,13 +14,5 @@ module Primer
     def initialize(color: :default, title:)
       @color, @title = color, title
     end
-
-    def self.template
-      <<-'erb'
-      <div title="<%= title %>" class="State <%= COLOR_CLASS_MAPPINGS[color] %>">
-        <%= content %>
-      </div>
-      erb
-    end
   end
 end
