@@ -1,10 +1,6 @@
 # actionview-component-demo
 
-Rails application with ActionView::Component
-
-## Monkey Patch
-
-The monkey patch necessary to use this code on versions of Rails prior to the alpha of 6.1 can be found in `app/lib/action_view/component.rb`.
+Rails application with ActionView::Component, using the `https://github.com/github/actionview-component` gem.
 
 ## Ruby version
 
