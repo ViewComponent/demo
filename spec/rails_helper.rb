@@ -5,14 +5,14 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/rspec"
-require "action_view/component_test_helpers"
+require "action_view/component/test_helpers"
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   config.use_transactional_fixtures = true
 
-  config.include ActionView::ComponentTestHelpers
+  config.include ActionView::Component::TestHelpers
 end
 
 # The following line is provided for convenience purposes. It has the downside

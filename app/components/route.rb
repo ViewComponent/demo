@@ -1,4 +1,4 @@
-class Route < ActionView::Component
+class Route < ActionView::Component::Base
   def initialize(*)
   end
 end

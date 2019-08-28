@@ -1,5 +1,5 @@
 module PullRequests
-  class Badge < ActionView::Component
+  class Badge < ActionView::Component::Base
     include OcticonsHelper
 
     validates :state, inclusion: {in: [:merged, :closed, :open]}

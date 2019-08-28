@@ -1,4 +1,4 @@
-class ErbTemplate < ActionView::Component
+class ErbTemplate < ActionView::Component::Base
   validates :content, presence: true
 
   def initialize(message:)

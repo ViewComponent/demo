@@ -1,4 +1,4 @@
-class StringInterp < ActionView::Component
+class StringInterp < ActionView::Component::Base
   def initialize(*)
   end
 

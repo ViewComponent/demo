@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe PullRequests::Badge do
   it "renders the merged state" do
-    result = render_component(PullRequests::Badge.new(state: :merged, is_draft: false))
+    result = render_inline(PullRequests::Badge, state: :merged, is_draft: false)
 
     assert_includes result.text, "Merged"
     assert result.css("[title='Status: Merged']").any?
@@ -11,7 +11,7 @@ RSpec.describe PullRequests::Badge do
   end
 
   it "renders the closed state" do
-    result = render_component(PullRequests::Badge.new(state: :closed, is_draft: false))
+    result = render_inline(PullRequests::Badge, state: :closed, is_draft: false)
 
     assert_includes result.text, "Closed"
     assert result.css("[title='Status: Closed']").any?
@@ -20,7 +20,7 @@ RSpec.describe PullRequests::Badge do
   end
 
   it "renders the closed draft state" do
-    result = render_component(PullRequests::Badge.new(state: :closed, is_draft: true))
+    result = render_inline(PullRequests::Badge, state: :closed, is_draft: true)
 
     assert_includes result.text, "Closed"
     assert result.css("[title='Status: Closed']").any?
@@ -29,7 +29,7 @@ RSpec.describe PullRequests::Badge do
   end
 
   it "renders the open state" do
-    result = render_component(PullRequests::Badge.new(state: :open, is_draft: false))
+    result = render_inline(PullRequests::Badge, state: :open, is_draft: false)
 
     assert_includes result.text, "Open"
     assert result.css("[title='Status: Open']").any?
@@ -38,7 +38,7 @@ RSpec.describe PullRequests::Badge do
   end
 
   it "renders the draft state" do
-    result = render_component(PullRequests::Badge.new(state: :open, is_draft: true))
+    result = render_inline(PullRequests::Badge, state: :open, is_draft: true)
 
     assert_includes result.text, "Draft"
     assert result.css("[title='Status: Draft']").any?

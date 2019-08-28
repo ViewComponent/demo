@@ -1,5 +1,5 @@
 module Primer
-  class State < ActionView::Component
+  class State < ActionView::Component::Base
     COLOR_CLASS_MAPPINGS = {
       default: "",
       green: "State--green",

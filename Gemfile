@@ -35,7 +35,7 @@ gem "jbuilder"
 
 gem "octicons_helper"
 
-gem "actionview-component", "~> 1.0"
+gem "actionview-component", "= 1.2.0"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false

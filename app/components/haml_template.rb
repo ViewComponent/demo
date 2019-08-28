@@ -1,4 +1,4 @@
-class HamlTemplate < ActionView::Component
+class HamlTemplate < ActionView::Component::Base
   validates :content, presence: true
 
   def initialize(message:)
