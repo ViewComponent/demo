@@ -1,2 +1,2 @@
-class ComponentWithoutInitializer < ActionView::Component
+class ComponentWithoutInitializer < ActionView::Component::Base
 end

@@ -1,4 +1,4 @@
-class SlimTemplate < ActionView::Component
+class SlimTemplate < ActionView::Component::Base
   validates :content, presence: true
 
   def initialize(message:)

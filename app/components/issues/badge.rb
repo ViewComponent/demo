@@ -1,5 +1,5 @@
 module Issues
-  class Badge < ActionView::Component
+  class Badge < ActionView::Component::Base
     include OcticonsHelper
 
     STATES = {
