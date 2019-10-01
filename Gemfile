@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.6.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", github: 'rails/rails'
+gem "rails", github: "rails/rails"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 # Use Puma as the app server
@@ -35,7 +35,7 @@ gem "jbuilder"
 
 gem "octicons_helper"
 
-gem "actionview-component", "= 1.2.0"
+gem "actionview-component", "= 1.3.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
