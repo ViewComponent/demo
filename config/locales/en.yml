@@ -30,4 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  components:
+    component_with_translations:
+      title: Lorem ipsum
+      subtitle: More lorem ipsum
   hello: "Hello world"
