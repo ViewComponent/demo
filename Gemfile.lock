@@ -82,7 +82,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionview-component (1.3.1)
+    actionview-component (1.3.6)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     archive-zip (0.12.0)
@@ -259,7 +259,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionview-component (= 1.3.1)
+  actionview-component (= 1.3.6)
   benchmark-ips
   bootsnap (>= 1.1.0)
   byebug
