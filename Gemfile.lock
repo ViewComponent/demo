@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/github/actionview-component.git
+  revision: fed4d13946ee9e54e7850bd44e596e89a2e38199
+  specs:
+    actionview-component (1.4.0)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: 9a62e95f4a61ec010a146ade9c705909ed82c8ec
   specs:
@@ -82,7 +88,6 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionview-component (1.3.6)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     archive-zip (0.12.0)
@@ -259,7 +264,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionview-component (= 1.3.6)
+  actionview-component!
   benchmark-ips
   bootsnap (>= 1.1.0)
   byebug
