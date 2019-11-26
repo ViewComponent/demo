@@ -1,9 +1,8 @@
 GIT
   remote: https://github.com/github/actionview-component.git
-  revision: a031e2c6e2cc44497536e774f0cc5b69bcaca1b7
-  branch: require-railtie
+  revision: d573fe6c4962b19856e657c6887f60658d683c41
   specs:
-    actionview-component (1.4.0)
+    actionview-component (1.5.3)
 
 GIT
   remote: https://github.com/rails/rails.git
