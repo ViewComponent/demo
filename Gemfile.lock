@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/github/actionview-component.git
-  revision: d573fe6c4962b19856e657c6887f60658d683c41
+  revision: 1429f36d7f9b81703161a8ce9cd5627bab6a0ac6
   specs:
-    actionview-component (1.5.3)
+    actionview-component (1.6.1)
 
 GIT
   remote: https://github.com/rails/rails.git
@@ -293,7 +293,7 @@ DEPENDENCIES
   wkhtmltoimage-binary
 
 RUBY VERSION
-   ruby 2.6.1p33
+   ruby 2.6.3p62
 
 BUNDLED WITH
    1.17.3
