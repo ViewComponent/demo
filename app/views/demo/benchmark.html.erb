@@ -1,24 +1,24 @@
 <% Benchmark.ips do |x| %>
   <% x.report("component") do %>
-    <%= render Box do %>
+    <%= render BoxComponent do %>
       Inside a box
-      <%= render Box do %>
+      <%= render BoxComponent do %>
         Inside a box
-        <%= render Box do %>
+        <%= render BoxComponent do %>
           Inside a box
-          <%= render Box do %>
+          <%= render BoxComponent do %>
             Inside a box
-            <%= render Box do %>
+            <%= render BoxComponent do %>
               Inside a box
-              <%= render Box do %>
+              <%= render BoxComponent do %>
                 Inside a box
-                <%= render Box do %>
+                <%= render BoxComponent do %>
                   Inside a box
-                  <%= render Box do %>
+                  <%= render BoxComponent do %>
                     Inside a box
-                    <%= render Box do %>
+                    <%= render BoxComponent do %>
                       Inside a box
-                      <%= render Box do %>
+                      <%= render BoxComponent do %>
                         Inside a box
                       <% end %>
                     <% end %>
