@@ -1,6 +1,4 @@
-class BoxComponent < ActionView::Component::Base
-  validates :content, presence: true
-
+class BoxComponent < ViewComponent::Base
   def initialize(*)
   end
 end

@@ -35,7 +35,7 @@ gem "jbuilder"
 
 gem "octicons_helper"
 
-gem "actionview-component", git: "https://github.com/github/actionview-component.git"
+gem "actionview-component", git: "https://github.com/github/actionview-component.git", branch: "view-component-base"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
@@ -62,8 +62,6 @@ group :development, :test do
   gem "chromedriver-helper"
   gem "factory_bot_rails"
   gem "pry-rails"
-  gem "rspec-rails"
-  gem "rspec_junit_formatter"
   gem "wkhtmltoimage-binary"
 end
 

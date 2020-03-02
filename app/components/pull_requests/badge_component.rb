@@ -1,9 +1,6 @@
 module PullRequests
-  class BadgeComponent < ActionView::Component::Base
+  class BadgeComponent < ViewComponent::Base
     include OcticonsHelper
-
-    validates :state, inclusion: {in: [:merged, :closed, :open]}
-    validates :is_draft, inclusion: {in: [true, false]}
 
     def initialize(state:, is_draft:)
       @state, @is_draft = state, is_draft
