@@ -1,5 +1,5 @@
 module Issues
-  class BadgeComponent < ActionView::Component::Base
+  class BadgeComponent < ViewComponent::Base
     include OcticonsHelper
 
     STATES = {
@@ -14,8 +14,6 @@ module Issues
         label: "Closed",
       },
     }.freeze
-
-    validates :state, inclusion: {in: STATES.keys}
 
     def initialize(state:)
       @state = state
