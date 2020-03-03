@@ -1,6 +1,6 @@
-# actionview-component-demo
+# view-component-demo
 
-Rails application with ActionView::Component, using the `https://github.com/github/actionview-component` gem.
+Rails application with ViewComponent, using the `https://github.com/github/actionview-component` gem.
 
 ## Ruby version
 
