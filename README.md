@@ -1,6 +1,6 @@
 # view-component-demo
 
-Rails application with ViewComponent, using the `https://github.com/github/actionview-component` gem.
+Rails application with ViewComponent, using the `https://github.com/github/view_component` gem.
 
 ## Ruby version
 
