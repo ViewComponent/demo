@@ -4,7 +4,7 @@ Rails application with ViewComponent, using the `https://github.com/github/view_
 
 ## Ruby version
 
-Use your favorite Ruby version manager to install `2.6.1`.
+Use your favorite Ruby version manager to install `3.0.0`.
 
 ## Local development
 
@@ -21,7 +21,7 @@ Install Postgres as desired.
 
 ## How to run the test suite
 
-`rspec`
+`bundle exec rake`
 
 ## Server
 
