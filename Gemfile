@@ -58,8 +58,6 @@ end
 
 group :development, :test do
   gem "capybara", ">= 2.15"
-  gem "selenium-webdriver"
-  gem "chromedriver-helper"
   gem "factory_bot_rails"
   gem "pry-rails"
   gem "wkhtmltoimage-binary"
