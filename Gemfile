@@ -35,6 +35,8 @@ gem "jbuilder"
 
 gem "octicons_helper"
 
+gem "sassc", "2.4.0"
+
 gem "view_component", "2.25.0"
 
 # Reduces boot times through caching; required in config/boot.rb

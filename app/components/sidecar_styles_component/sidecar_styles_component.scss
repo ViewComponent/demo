@@ -1,0 +1,9 @@
+$red: red;
+
+.foo {
+  color: $red;
+
+  .bar {
+    color: green;
+  }
+}

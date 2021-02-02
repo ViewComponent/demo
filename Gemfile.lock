@@ -257,6 +257,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.12)
   rails!
+  sassc (= 2.4.0)
   sassc-rails
   selenium-webdriver
   simplecov
