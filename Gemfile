@@ -35,7 +35,7 @@ gem "jbuilder"
 
 gem "octicons_helper"
 
-gem "view_component", "2.25.0"
+gem "view_component", "2.31.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
