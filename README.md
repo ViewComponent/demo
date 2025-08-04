@@ -4,7 +4,7 @@ Rails application with ViewComponent, using the `https://github.com/github/view_
 
 ## Ruby version
 
-Use your favorite Ruby version manager to install `3.0.0`.
+Use your favorite Ruby version manager to install `3.4.3`.
 
 ## Local development
 
