@@ -10,7 +10,7 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.0.3
+        ruby-version: 3.4.3
     - uses: actions/cache@v2
       with:
         path: vendor/bundle
