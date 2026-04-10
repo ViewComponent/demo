@@ -1,14 +1,14 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.4.3"
+ruby "4.0.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 8"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 # Use Puma as the app server
-gem "puma", "~> 4.3"
+gem "puma", ">= 5"
 # Use SCSS for stylesheets
 gem "sassc-rails"
 # Use Uglifier as compressor for JavaScript assets
@@ -19,6 +19,7 @@ gem "octicons_helper"
 gem "slim"
 
 gem "view_component"
+gem "auto_preview", github: "joelhawksley/auto_preview", branch: "main"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0"
